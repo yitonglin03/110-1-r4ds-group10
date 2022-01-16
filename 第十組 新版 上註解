@@ -13,7 +13,7 @@ a<-sample(pop,N,T)
 xbar<-mean(sample(a,N,T))
 xbar
 
-#­«½Æ©â¤@¤d¦¸#
+#é‡è¤‡æŠ½ä¸€åƒæ¬¡#
 draws<-1000
 xbars<-vector(length = 1000)
 for(i in 1:draws){
@@ -27,7 +27,7 @@ par(mfrow=c(2,2))
 draws=100000
 N<-30
 matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
-#(¸ê®ÆÄÝ©Ê,´X±øª½¦æ,´X±ø¾î¦C)#
+#(è³‡æ–™å±¬æ€§,å¹¾æ¢ç›´è¡Œ,å¹¾æ¢æ©«åˆ—)#
 xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
 xbars
 hist(xbars,breaks = 200,freq=F,xlim = c(20,45))
@@ -57,14 +57,14 @@ xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draw
 xbars
 hist(xbars,breaks = 200,freq=F)
 abline(v=mu,lty=1,lwd=1,col="red")
-abline(v=mean(xbars),lty=2,lwd=2,col="blue")#lty=type of line,1=¹ê½u,2=µê½u#
+abline(v=mean(xbars),lty=2,lwd=2,col="blue")#lty=type of line,1=å¯¦ç·š,2=è™›ç·š#
 x<-seq(from=28,to=38,by=.1)
-lines(x=x,y=dnorm(x=x,mean=mu,sd=sigma/sqrt(N)),lwd=2,col="orange")#squrt(N)=Nªº¥­¤è®Ú#
+lines(x=x,y=dnorm(x=x,mean=mu,sd=sigma/sqrt(N)),lwd=2,col="orange")#squrt(N)=Nçš„å¹³æ–¹æ ¹#
 
-mean(xbars)#¤Q¸U­Ó¼Ë¥»¥­§¡¼Æªº¥­§¡(Mu_x-bar)#
+mean(xbars)#åè¬å€‹æ¨£æœ¬å¹³å‡æ•¸çš„å¹³å‡(Mu_x-bar)#
 sd(xbars)
-mu#¥ÀÅé¥­§¡¼Æ#
+mu#æ¯é«”å¹³å‡æ•¸#
 sigma
-#sd(xbars)²¤µ¥©ó[sigma/sqrt(N)],¦¹§Y¤¤¥¡·¥­­©w²z#
+#sd(xbars)ç•¥ç­‰æ–¼[sigma/sqrt(N)],æ­¤å³ä¸­å¤®æ¥µé™å®šç†#
 
 
