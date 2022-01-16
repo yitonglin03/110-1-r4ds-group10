@@ -1,0 +1,70 @@
+setwd("d:/setwd")
+load("Census.2000.Rdata")
+pop<-Census.2000$A020
+summary(pop)
+hist(pop,breaks=min(pop):max(pop), border = "forest green", main ="Population Distribution of Age")
+mu<-mean(pop)
+sigma<-sd(pop)
+
+
+set.seed(12345)
+N<-200
+a<-sample(pop,N,T)
+xbar<-mean(sample(a,N,T))
+xbar
+
+#重複抽一千次#
+draws<-1000
+xbars<-vector(length = 1000)
+for(i in 1:draws){
+  xbars[i]<-mean(sample(pop,N,T))
+}
+xbars
+hist(xbars,breaks =200,border = "dark gray",freq = F)
+
+par(mfrow=c(2,2))
+
+draws=100000
+N<-30
+matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
+#(資料屬性,幾條直行,幾條橫列)#
+xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
+xbars
+hist(xbars,breaks = 200,freq=F,xlim = c(20,45))
+
+N<-200
+matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
+xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
+xbars
+hist(xbars,breaks = 200,freq=F,xlim = c(20,45))
+
+N<-360
+matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
+xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
+xbars
+hist(xbars,breaks = 200,freq=F,xlim = c(20,45))
+
+N<-1200
+matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
+xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
+xbars
+hist(xbars,breaks = 200,freq=F,xlim = c(20,45))
+
+par(mfrow=c(1,1))
+N<-300
+matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
+xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
+xbars
+hist(xbars,breaks = 200,freq=F)
+abline(v=mu,lty=1,lwd=1,col="red")
+abline(v=mean(xbars),lty=2,lwd=2,col="blue")#lty=type of line,1=實線,2=虛線#
+x<-seq(from=28,to=38,by=.1)
+lines(x=x,y=dnorm(x=x,mean=mu,sd=sigma/sqrt(N)),lwd=2,col="orange")#squrt(N)=N的平方根#
+
+mean(xbars)#十萬個樣本平均數的平均(Mu_x-bar)#
+sd(xbars)
+mu#母體平均數#
+sigma
+#sd(xbars)略等於[sigma/sqrt(N)],此即中央極限定理#
+
+
