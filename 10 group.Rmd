@@ -1,0 +1,39 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+load("Census.2000.Rdata")
+pop<-Census.2000$A020
+summary(pop)
+hist(pop,breaks=min(pop):max(pop), border = "forest green", main ="Population Distribution of Age")
+mu<-mean(pop)
+sigma<-sd(pop)
+```
+```{r}
+set.seed(12345)
+N<-200
+a<-sample(pop,N,T)
+xbar<-mean(sample(a,N,T))1
+```
+
+```{r}
+draws<-1000
+xbars<-vector(length = 1000)
+for(i in 1:draws){
+  xbars[i]<-mean(sample(pop,N,T))}
+
+xbars
+hist(xbars,breaks =200,border = "dark gray",freq = F)
+```
+```{r}
+N<-200
+matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws)
+xbars<-rowMeans(matrix(data=sample(pop,size=draws*N,replace=T),ncol=N,nrow =draws))
+
+xbars
+hist(xbars,breaks = 200,freq=F,xlim = c(20,45))
+```
+
+
+
